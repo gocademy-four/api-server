@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_31_024338) do
+ActiveRecord::Schema.define(version: 2018_08_08_035645) do
+
+  create_table "customers", force: :cascade do |t|
+    t.integer "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_customers_on_member_id"
+  end
 
   create_table "members", force: :cascade do |t|
     t.string "email"
@@ -20,6 +27,23 @@ ActiveRecord::Schema.define(version: 2018_07_31_024338) do
     t.string "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "street"
+    t.string "city"
+  end
+
+  create_table "tutor_regions", force: :cascade do |t|
+    t.integer "Tutor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "location"
+    t.index ["Tutor_id"], name: "index_tutor_regions_on_Tutor_id"
+  end
+
+  create_table "tutors", force: :cascade do |t|
+    t.integer "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_tutors_on_member_id"
   end
 
 end
