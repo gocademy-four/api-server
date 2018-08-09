@@ -1,15 +1,10 @@
 language: ruby
 cache: bundler
 
-jobs:
-  include:
-    - stage: test
-      script:
-        - bundle exec rails db:migrate RAILS_ENV=test
-        - bundle exec rspec
-
-    - stage: deploy
-      deploy:
-        provider: heroku
-        app: gocademy-tutor-api-server
-        api_key: $HEROKU_API_KEY
+script:
+  - bundle exec rails db:migrate RAILS_ENV=test
+  - bundle exec rspec
+deploy:
+  provider: heroku
+  app: gocademy-tutor-api-server
+  api_key: $HEROKU_API_KEY
