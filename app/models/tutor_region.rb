@@ -1,3 +1,3 @@
 class TutorRegion < ApplicationRecord
-  belongs_to :Tutor
+  belongs_to :tutor
 end
