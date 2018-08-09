@@ -48,6 +48,9 @@ end
 group :test do
   gem 'faker'
   gem 'database_cleaner'
+
+  gem 'simplecov'
+  gem 'coveralls', require: false
 end
 
 group :production do
