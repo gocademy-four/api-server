@@ -17,19 +17,21 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it "rejects request with unknown member" do
-      post :login, params: {
-        email: "garbage" + member.email,
-        password: member.password
-      }
-      expect(response).to have_http_status(:unauthorized)
+      expect {
+        post :login, params: {
+          email: "garbage" + member.email,
+          password: member.password
+        }
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it "rejects request with known member but wrong password" do
-      post :login, params: {
-        email: member.email,
-        password: "garbage" + member.password
-      }
-      expect(response).to have_http_status(:unauthorized)
+      expect {
+        post :login, params: {
+          email: member.email,
+          password: "garbage" + member.password
+        }
+      }.to raise_error(AbstractController::ActionNotFound)
     end
 
     it "accepts request with known member" do
