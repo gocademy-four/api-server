@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :delete] do
     post 'login', to: 'sessions#login'
   end
+
+  resource :customer, only: [:show]
+  resource :customers, only: [:create, :update, :delete]
 end
