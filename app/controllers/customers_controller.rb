@@ -1,9 +1,9 @@
 class CustomersController < ApplicationController
   def show
     if params[:id] then
-      customer = Customer.find_by!(id: params[:id])
+      customer = Customer.find_by!(member_id: params[:id])
     else
-      customer = Customer.find_by!(id: current_user.id)
+      customer = Customer.find_by!(member_id: current_user.id)
     end
 
     render json: customer.as_json.except("member_id").merge({
