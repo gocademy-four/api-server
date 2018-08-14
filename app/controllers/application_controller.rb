@@ -1,6 +1,8 @@
+require 'token_service'
+
 class ApplicationController < ActionController::API
   def current_user
-    Member.find_by!(token)
+    Member.find_by!(id: token)
   end
 
   private
@@ -9,6 +11,6 @@ class ApplicationController < ActionController::API
     token_val = http_auth.scan(/^Bearer (.*)$/).flatten.last
 
     throw ActionController::BadRequest unless token_val
-    token_val
+    TokenService.check(token_val)
   end
 end

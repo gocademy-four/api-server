@@ -59,8 +59,6 @@ RSpec.describe SessionsController, type: :controller do
           end
         end
       end
-
-
     end
 
     it "returns HTTP 200 OK status" do
