@@ -23,10 +23,6 @@ RSpec.describe TokenService do
     describe "token body" do
       let (:body) { JWT.decode(TokenService.issue(member.id), nil, false)[0] }
 
-      it "has iat" do
-        expect(body).to have_key("iat")
-      end
-
       it "has exp" do
         expect(body).to have_key("exp")
       end
@@ -59,17 +55,6 @@ RSpec.describe TokenService do
         token = TokenService.build({
           sub: member.id,
           exp: Time.utc("2017-07-01 00:00:00").to_i
-        })
-
-        expect {
-          TokenService.check token
-        }.to raise_error(JWT::ExpiredSignature)
-      end
-
-      it "rejects ineffective token" do
-        token = TokenService.build({
-          sub: member.id,
-          exp: (Time.now - TokenService.token_period - 1.hour).to_i
         })
 
         expect {
