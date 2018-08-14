@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+require 'token_service'
+
 RSpec.describe SessionsController, type: :controller do
   describe "POST #login" do
     let (:member) { FactoryBot.create(:member) }
@@ -42,10 +44,23 @@ RSpec.describe SessionsController, type: :controller do
         }
       end
 
-      it "returns a token" do
-        json = JSON.parse(response.body, symbolize_names: true)
-        expect(json).to have_key(:token)
+      describe "JSON response body" do
+        let(:json) { JSON.parse(response.body, symbolize_names: true) }
+
+        it "has a token" do
+          expect(json).to have_key(:token)
+        end
+
+        describe "token" do
+          let(:token) { json[:token] }
+
+          it "is decodeable to member.id" do
+            expect(TokenService.check(token)).to equal(member.id)
+          end
+        end
       end
+
+
     end
 
     it "returns HTTP 200 OK status" do
