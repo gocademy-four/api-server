@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :tutor do
-    member nil
+    member
   end
 end

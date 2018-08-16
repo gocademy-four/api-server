@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   resource :customer, only: [:show]
   resource :customers, only: [:create, :update, :delete]
+
+  resource :order, only: [:create]
 end

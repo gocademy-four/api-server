@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :tutor_region do
-    Tutor nil
+    tutor
   end
 end
