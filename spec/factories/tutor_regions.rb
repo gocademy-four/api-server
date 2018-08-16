@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :tutor_region do
-    Tutor nil
+    location { Faker::Address.full_address }
+
+    tutor
   end
 end
