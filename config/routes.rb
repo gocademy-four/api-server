@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resource :order, only: [:create]
 
   get 'members/tutors/:id',  to: 'tutors#show'
+  get 'classes', to: 'classes#show'
 end
