@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resource :customers, only: [:create, :update, :delete]
 
   resource :order, only: [:create]
+
+  get 'members/tutors/:id',  to: 'tutors#show'
 end
