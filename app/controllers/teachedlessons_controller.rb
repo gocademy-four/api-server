@@ -1,9 +1,9 @@
 class TeachedlessonsController < ApplicationController
     def create
-        params.require([:tutor_id, :lesson_name, :price_per_hour])
+        params.require([:lesson_name, :price_per_hour])
         
         teachedlesson = Teachedlesson.new
-        teachedlesson.tutor = Tutor.find_by!(id: params[:tutor_id])
+        teachedlesson.tutor = Tutor.find_by!(member_id: current_user.id)
         if Lesson.exists?(name: params[:lesson_name])
             teachedlesson.lesson = Lesson.find_by!(name: params[:lesson_name])
         else
