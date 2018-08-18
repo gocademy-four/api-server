@@ -22,7 +22,5 @@ class HistoryController < ApplicationController
             teachedlesson_price_per_hour: order.teachedlesson.price_per_hour,
             location: order.teachedlesson.tutor.member.city 
         })}
-        
-        # customer_id, customer_name, customer_phone_number, tutor_id, tutor_name, tutor_phone_number, teachedlesson_id, location, date, lesson_name, price_per_hour
     end
 end
