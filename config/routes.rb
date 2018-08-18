@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   resource :customer, only: [:show]
   resource :customers, only: [:create, :update, :delete]
 
-  resource :order, only: [:create]
-  get 'order/:id', to: 'orders#show'
+  resources :orders, only: [:create, :show, :index]
 
   get 'members/tutors/:id',  to: 'tutors#show'
   get 'classes', to: 'classes#show'
