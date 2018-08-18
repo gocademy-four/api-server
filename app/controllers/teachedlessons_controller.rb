@@ -7,15 +7,14 @@ class TeachedlessonsController < ApplicationController
         if Lesson.exists?(name: params[:lesson_name])
             teachedlesson.lesson = Lesson.find_by!(name: params[:lesson_name])
         else
-            teachedlesson.lesson = Lesson.create(name: params[:name])
+            Category.create(name: "dummy") unless Category.exists?(id: 1)
+            lesson = Lesson.new(name: params[:name], category_id: 1)
+            lesson.save!
+            teachedlesson.lesson = lesson
         end
         teachedlesson.price_per_hour = params[:price_per_hour]
         teachedlesson.save!
-        
-        render json: {}
-    end
 
-    def show
-        render json: {a: 2}
+        render json: {}
     end
 end
