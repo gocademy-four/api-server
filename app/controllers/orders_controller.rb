@@ -13,4 +13,10 @@ class OrdersController < ApplicationController
 	def show
 		render json: Order.find_by!(id: params[:id])
 	end
+
+	def index
+		current_customer_id = Customer.where(id: current_user.id)
+
+		render json: Order.where(customer_id: current_customer_id)
+	end
 end
