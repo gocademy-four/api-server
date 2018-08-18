@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :order do
-    customer nil
-    teachedlesson nil
+    customer
+    teachedlesson
   end
 end

@@ -22,5 +22,25 @@ RSpec.describe OrdersController, type: :controller do
 
 	end
 	
+	describe "GET order#show" do
+		let(:order) { FactoryBot.create(:order) }
+
+		before(:each) do
+			get :show, params: {id: order.id }
+		end
+
+		it "returns HTTP 200 OK" do
+			expect(response).to have_http_status(:ok)
+		end
+
+		describe "JSON response body" do
+			let(:json) { JSON.parse(response.body, symbolize_names: true) }
+
+			it "has same ID" do
+				expect(json[:id]).to eq(order.id)
+			end
+		end
+
+	end
 
 end
