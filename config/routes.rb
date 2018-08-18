@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :show, :index]
 
-  # get 'members/tutors/:id',  to: 'tutors#show'
+  # resource :history, only: [:show]
+  get 'history', to: 'history#show'
+
   get 'classes', to: 'classes#show'
 end
