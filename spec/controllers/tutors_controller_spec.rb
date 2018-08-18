@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TutorsController, type: :controller do
     describe "GET tutor#show" do
-        context "tutor without region" do
+        context "show tutor without region" do
             let(:tutor) { FactoryBot.create(:tutor) }
 
             before(:each) do
@@ -42,7 +42,7 @@ RSpec.describe TutorsController, type: :controller do
             end
         end
 
-        context "tutor with regions" do
+        context "show tutor with regions" do
             let(:tutor_with_regions) { FactoryBot.create(:tutor_with_tutor_regions) }
 
             before(:each) do
@@ -61,6 +61,31 @@ RSpec.describe TutorsController, type: :controller do
                 end
             end
         end
+    end
 
+    describe "POST tutor#create" do
+        it "rejects request with missing member" do
+            expect {
+              post :create
+            }.to raise_error(ActionController::ParameterMissing)
+          end
+      
+          context "valid parameter" do
+            before(:each) do
+              post :create, params: { member: FactoryBot.build(:tutor).as_json }
+            end
+      
+            it "returns HTTP 200 OK" do
+              expect(response).to have_http_status(:ok)
+            end
+      
+            describe "JSON response body" do
+              let(:json) { JSON.parse(response.body, symbolize_names: true) }
+      
+              it "has token" do
+                expect(json).to have_key(:token)
+              end
+            end
+        end
     end
 end
