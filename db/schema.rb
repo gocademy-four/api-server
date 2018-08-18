@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_16_141402) do
+ActiveRecord::Schema.define(version: 2018_08_18_143640) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2018_08_16_141402) do
     t.integer "teachedlesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "confirmed", default: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["teachedlesson_id"], name: "index_orders_on_teachedlesson_id"
   end
