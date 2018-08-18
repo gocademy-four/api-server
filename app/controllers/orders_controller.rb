@@ -9,4 +9,8 @@ class OrdersController < ApplicationController
 
 		render json: {}
 	end
+
+	def show
+		render json: Order.find_by!(id: params[:id])
+	end
 end
